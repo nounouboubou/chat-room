@@ -26,6 +26,7 @@ class room-list extends React.Component {
           );
         }
       }
+      
       ReactDOM.render(
               <room-list/>,document.getElementById('app')
             );
