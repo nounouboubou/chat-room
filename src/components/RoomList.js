@@ -8,7 +8,7 @@ class RoomList extends Component {
       rooms: []
     };
 
-    this.roomsRef = this.props.firebase.database().ref('rooms');
+    this.roomsRef = this.props.firebase.database().ref('room');
   }
 
   componentDidMount() {
