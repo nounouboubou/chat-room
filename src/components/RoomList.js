@@ -41,7 +41,11 @@ createRoom(event){
           <h1>Bloc Chat</h1>
           {
             this.state.rooms.map((room, index) =>
-              <div key={ index }><h3>{ room.name }</h3></div>
+              <a key={ index }
+              onClick = {(key,title) => this.props.selectActiveRoom(key,title)}
+              href="#">
+              <h3>{ room.name }</h3>
+              </a>
             )
           }
           <form
