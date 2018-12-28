@@ -27,9 +27,10 @@ class App extends Component {
   };
 }
 
-selectActiveRoom(key, title){
+selectActiveRoom(key, roomName){
   const selectedActiveRoom = key;
-  const newActiveRoomTitle= title;
+  const newActiveRoomTitle= roomName;
+
   this.setState({ activeRoom: selectedActiveRoom});
 }
   render() {
