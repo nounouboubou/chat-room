@@ -5,11 +5,8 @@ class MessageList extends Component {
     super(props);
 
     this.state = {
+      currentRoom: null,
       messages: [],
-      username: "<USERNAME HERE>",
-      content: "<CONTENT OF THE MESSAGE HERE>",
-      sentAt: "<TIME MESSAGE WAS SENT HERE>",
-      roomId: "<ROOM UID HERE>"
     };
 
     this.messagesRef = this.props.firebase.database().ref('messages');
@@ -19,6 +16,7 @@ componentDidMount(){
   this.messagesRef.on('child_added', snapshot=>{
     const message = snapshot.val();
     message.key = snapshot.key;
+
     this.setState({ messages: this.state.messages.concat(message) });
   });
 }
@@ -26,18 +24,27 @@ componentDidMount(){
 showRoomMessage(message, index){
       if (message.roomId === this.props.activeRoom){
         return (
-          <p key = {index}>{message.content}</p>
+          <p key = {index}>{message.content}></p>
         );
       }
+}
+
+filteredMessage() {
+  return this.state.messages.filter(message => {
+    return message.roomId === this.props.activeRoom;
+  });
 }
 
 render(){
   return(
     <div>
     {
-          this.state.messages.map((message, index) =>
-            <div>
-            onClick = {(message,index) => this.showRoomMessage(message, index)}
+          this.filteredMessage().map((message, index) =>
+            <div
+            key={index}
+              onClick = {() => this.showRoomMessage(message, index)}
+            >
+            {message.content}
             </div>
           )
         }

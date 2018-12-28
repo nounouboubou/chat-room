@@ -40,12 +40,15 @@ createRoom(event){
         <nav className="container">
           <h1>Bloc Chat</h1>
           {
-            this.state.rooms.map((room, index) =>
-              <a key={ index }
-              onClick = {(key,title) => this.props.selectActiveRoom(key,title)}
-              href="#">
-              <h3>{ room.name }</h3>
-              </a>
+            this.state.rooms.map((room, index) => {
+              return (
+                <a key={ index }
+                onClick = {() => this.props.selectActiveRoom(index, room.name)}
+                href="#">
+                <h3>{ room.name }</h3>
+                </a>
+              )
+            }
             )
           }
           <form
